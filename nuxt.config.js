@@ -1,5 +1,5 @@
 export default {
-  mode: 'spa',
+  target: 'static',
   /*
    ** Headers of the page
    */
@@ -41,4 +41,9 @@ export default {
      */
     extend(config, ctx) {},
   },
+
+  serverMiddleware: {
+    '/api/hello': '~/server-middleware/hello.js'
+  },
+
 };
