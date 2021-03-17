@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <logo />
+      <logo/>
       <h1 class="title">
         nuxtjs
       </h1>
@@ -10,32 +10,54 @@
       </h2>
       <div class="links">
         <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
+            href="https://nuxtjs.org/"
+            target="_blank"
+            class="button--green"
         >
           Documentation
         </a>
         <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
+            href="https://github.com/nuxt/nuxt.js"
+            target="_blank"
+            class="button--grey"
         >
           GitHub
         </a>
       </div>
+      <br>
+      <h3>Click button to get message from ServerMiddleware <small>/api/hello</small></h3>
+      <br>
+      <div>
+        <button class="button--green" @click="apiCall">
+          Get message
+        </button>
+      </div>
+      <br>
+      <div>Message: {{ message.data }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from '~/components/Logo.vue';
 
 export default {
   components: {
     Logo
+  },
+
+  data() {
+    return {
+      message: ''
+    };
+  },
+
+  methods: {
+    async apiCall() {
+      this.message = await fetch('/api/hello').then(res => res.json());
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -50,7 +72,7 @@ export default {
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
